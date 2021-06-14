@@ -1,0 +1,36 @@
+<h1>Soal</h1>
+<div class="line"></div>
+
+<form action="/soal/test"  method="POST">
+    
+        <label for="testName">Nama Test: </label>
+        <input id="testName" type="text" name="testName" required>
+    
+    
+    <br><br>
+    <label for="matkul">Mata Kuliah: </label>
+    <select name="matkul" id="matkul" onchange="singleSelectChangeValueM()">
+        <% for( let index = 0; index < matkul.length; index++ ) { %>
+            <option value="<%= matkul[index].idmatakuliah %>"><%= matkul[index].nama_matkul %> </option>
+        <% } %>
+    </select>
+    <br><br>
+    <label for="semester">Semester: </label> 
+    <select name="semesterf" id="semesterf" onchange="singleSelectChangeValueS()">
+        <% for( let index = 0; index < semester.length; index++ ) { %>
+            <option value="<%= semester[index].idsemesterF %>"><%= semester[index].semester %> </option>
+        <% } %>
+    </select>
+    <br><br>
+    <label for="time">Batas Waktu (dalam menit): </label>
+    <input type="number" id="time" min="0" name="time" value="">
+    <br><br>
+    <a href="./testList" class="btn btn-danger" >
+        <i data-feather="x" style="text-align: center; vertical-align: middle; align-items: center;"></i>Cancel</a>
+    
+    <button type="submit" class="btn btn-primary">
+        <i data-feather="save" style="text-align: center; vertical-align: middle; align-items: center;"></i> Save</button>
+</form>
+
+<%- contentFor('title') %> 
+Tambah Test

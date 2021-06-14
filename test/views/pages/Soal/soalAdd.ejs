@@ -1,0 +1,21 @@
+<h1>Soal</h1>
+
+<hr>
+<form action="/soalAdd/add/<%= t[0].idtests %>" method="POST">
+    <label for="tipe" >Tipe:    </label>
+    <input type="radio" name="tipe" id="tipe" value="PG">Pilihan Ganda      
+    <input type="radio" name="tipe" id="tipe" value="ESAY">Esay
+    <hr>
+    <label for="soal">Soal:</label>
+    <br>
+    <textarea name="soal" id="soal" cols="120" rows="5"></textarea>
+    <a href="../soalList/<%= t[0].idtests %> " class="btn btn-danger" >
+        <i data-feather="x" style="text-align: center; vertical-align: middle; align-items: center;"></i>Cancel</a>
+    
+    <button type="submit" class="btn btn-primary">
+        <i data-feather="save" style="text-align: center; vertical-align: middle; align-items: center;"></i> Save</button>
+</form>
+<hr>
+
+<%- contentFor('title') %> 
+Tambah Soal

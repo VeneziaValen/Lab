@@ -1,0 +1,60 @@
+<h1>Soal</h1>
+<hr>
+
+
+<a href="../../soalList/<%= t[0].test %> " class="btn btn-danger">
+    <i data-feather="arrow-left" style="text-align: center; vertical-align: middle; align-items: center;"></i> Kembali ke Daftar Soal</a>
+
+<form action="/soalPilihan/<%= t[0].idsoal %>/add " method="post" style="float: right;">
+    <label for="pilihan">Tambah Pilihan: </label>
+    <input type="text" id="pilihan" name="pilihan">
+
+    <button type="submit" class="btn btn-primary">
+        <i data-feather="plus" style="text-align: center; vertical-align: middle; align-items: center;"></i> Tambah</button>
+</form>
+<br><hr>
+<label for="soal">Soal:</label>
+<br>
+<p id="soal" name="soal"><%= t[0].soal %> </p>
+
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th style="text-align: center; width: 10%;" scope="col">No.</th>
+            <th style="text-align: center; " scope="col">Pilihan</th>
+            <th style="text-align: center; width: 18%;" scope="col">Kunci</th>
+            <th style="text-align: center; width: 18%;" scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <% if(data.length){
+ 
+            for(var i = 0; i< data.length; i++) {%>  
+            <tr>
+              <th scope="row"><%= (i+1) %></th>
+              <td style="text-align: center;" ><%= data[i].jawab %></td>
+              <td style="text-align: center; vertical-align: middle;">
+                <% if (data[i].benar == 0) { %>
+                    <form action="/soalPilihan/<%= t[0].idsoal %>/check/<%= data[i].idjawabpg %>" method="post">
+                        <button class="btn btn-primary" type="submit">
+                    <i data-feather="check-circle"></i></button>  
+                        </form>
+                    <% } %>    </td>  <td>               
+                <a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="/soalPilihan/<%= t[0].idsoal %>/delete/<%= data[i].idjawabpg %>">
+                    <i data-feather="trash-2"></i></a>                       
+             </td>
+            </tr>
+            <% }
+            
+             }else{ %>
+                 <tr>
+                    <td colspan="4">Belum ada pilihan</td>
+                 </tr>
+              <% } %>
+    </tbody>
+</table>
+
+<%- contentFor('title') %> 
+Daftar Pilihan Jawaban

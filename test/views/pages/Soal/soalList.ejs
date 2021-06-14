@@ -1,0 +1,59 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        var url_s = window.location.href;
+        var url = new URL(url_s);
+        var t = url.searchParams.get("test")
+        
+    });
+</script>
+
+<h1>Soal</h1>
+<hr>
+         
+<a href="../../testList" class="btn btn-danger">
+    <i data-feather="arrow-left" style="text-align: center; vertical-align: middle; align-items: center;"></i> Kembali ke Daftar Test</a>
+<a href="../../soalAdd/<%= t[0].idtests %>  " class="btn btn-success float-right">
+    <i data-feather="plus" style="text-align: center; vertical-align: middle; align-items: center;"></i> Tambah Soal</a>
+<br><br>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th style="text-align: center; width: 10%;" scope="col">No.</th>
+            <th style="text-align: center; " scope="col">Soal</th>
+            <th style="text-align: center; width: 10%;" scope="col">Jenis</th>
+            <th style="text-align: center; width: 18%;" scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <% if(data.length){
+ 
+            for(var i = 0; i< data.length; i++) {%>  
+            <tr>
+              <th scope="row"><%= (i+1) %></th>
+              <td style="text-align: center;" ><%= data[i].soal%></td>
+              <td style="text-align: center; vertical-align: middle;"><%= data[i].tipe%></td>
+              <td style="text-align: center; vertical-align: middle;">
+                <% if (data[i].tipe == "PG") { %>
+                    <a class="btn btn-primary" href="../soalPilihan/<%= data[i].idsoal%>">
+                    <i data-feather="list"></i></a>  
+                    <% } %>
+                <a class="btn btn-success edit" href="../soalEdit/<%= data[i].idsoal%>">
+                    <i data-feather="edit"></i></a>                       
+                <a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="./<%= data[i].test%>/delete/<%= data[i].idsoal%>">
+                    <i data-feather="trash-2"></i></a>                       
+             </td>
+            </tr>
+            <% }
+                     
+             }else{ %>
+                 <tr>
+                    <td colspan="4">Belum ada soal</td>
+                 </tr>
+              <% } %>
+    </tbody>
+</table>
+
+
+<%- contentFor('title') %> 
+Daftar Soal
